@@ -10,6 +10,8 @@
 
 首次发布与线上验收已完成，结果见[实施与验收记录](docs/implementation-validation.md)。
 
+字号、主色、博客与反馈改版也已上线，结果见[改版发布验收](docs/website-redesign-publication-validation.md)。
+
 ## 本地预览与验证
 
 在仓库根目录运行，静态站点无需安装依赖或构建：
