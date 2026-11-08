@@ -6,6 +6,8 @@
 - 简体中文：https://realmx1.github.io/zh/
 - GitHub 站点仓库：`RealmX1/realmx1.github.io`
 
+首次发布与线上验收已完成，结果见[实施与验收记录](docs/implementation-validation.md)。
+
 ## 本地预览与验证
 
 在仓库根目录运行，静态站点无需安装依赖或构建：
