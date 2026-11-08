@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 360" role="img" aria-labelledby="concept-title concept-description">
+  <title id="concept-title">Trace of Thought 项目概念图</title>
+  <desc id="concept-description">将思维组织、数字活动与专注工作连接起来。此图表达项目关注的方向，并非软件界面截图。</desc>
+  <rect width="560" height="360" rx="12" fill="oklch(0.965 0 0)"/>
+  <g fill="none" stroke="oklch(0.72 0 0)" stroke-width="2">
+    <path d="M178 100C250 100 240 178 300 178M178 260C250 260 240 178 300 178M420 178H495"/>
+    <path d="M60 100H95M60 260H95M495 178V78M495 178V282"/>
+  </g>
+  <g fill="oklch(1 0 0)">
+    <rect x="34" y="64" width="164" height="72" rx="8"/>
+    <rect x="34" y="224" width="164" height="72" rx="8"/>
+    <rect x="464" y="64" width="62" height="28" rx="5"/>
+    <rect x="464" y="268" width="62" height="28" rx="5"/>
+  </g>
+  <rect x="275" y="130" width="174" height="96" rx="8" fill="oklch(0.49 0.18 30)"/>
+  <g font-family="system-ui,sans-serif" font-size="32" font-weight="500" text-anchor="middle" fill="oklch(0.21 0 0)">
+    <text x="116" y="109">思维组织</text>
+    <text x="116" y="269">数字活动</text>
+    <text x="362" y="187" fill="oklch(1 0 0)">专注工作</text>
+  </g>
+  <g fill="oklch(0.49 0.18 30)"><circle cx="495" cy="78" r="5"/><circle cx="495" cy="282" r="5"/></g>
+</svg>

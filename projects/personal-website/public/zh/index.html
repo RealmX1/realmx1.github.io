@@ -17,6 +17,7 @@
   <link rel="alternate" hreflang="zh-CN" href="https://realmx1.github.io/zh/">
   <link rel="alternate" hreflang="x-default" href="https://realmx1.github.io/">
   <link rel="icon" type="image/svg+xml" href="../assets/bomin-zhang-monogram.svg">
+  <link rel="preload" href="../assets/fonts/hanken-grotesk-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/personal-website.css">
   <script src="../assets/language-preference-navigation.js" defer></script>
 </head>
@@ -25,11 +26,12 @@
   <div class="page-container">
     <header class="site-header">
       <a class="site-identity" href="./" aria-label="Bomin Zhang，首页">
-        <span class="personal-monogram" aria-hidden="true">BZ</span>Bomin Zhang
+        <span class="personal-monogram" aria-hidden="true">BZ</span><span class="identity-name">Bomin Zhang</span>
       </a>
       <nav class="section-navigation" aria-label="主导航">
         <a href="#selected-work">作品</a>
-        <a href="#professional-background">经历</a>
+        <a href="blog/">博客</a>
+        <a href="#professional-background">关于</a>
         <a href="#connect">联系</a>
       </nav>
       <nav class="language-navigation" aria-label="语言">
@@ -41,17 +43,29 @@
 
     <main id="main-content">
       <section class="personal-introduction" aria-labelledby="personal-name">
-        <div>
-          <p class="professional-positioning">跨领域研究与构建者</p>
+        <div class="personal-introduction-copy">
           <h1 class="personal-name" id="personal-name">Bomin Zhang</h1>
+          <p class="professional-positioning">跨领域研究与构建者</p>
           <p class="personal-description">我在人工智能、软件与哲学之间探索，构建帮助人们思考、学习，以及与智能系统协作的工具。</p>
           <p class="current-affiliation">人工智能博士阶段在读 · 上海创智学院</p>
+          <div class="intro-actions">
+            <a class="button-link button-link-primary" href="#selected-work">查看作品 <span aria-hidden="true">↘</span></a>
+            <a class="button-link" href="https://www.linkedin.com/in/bomin-zhang-8318aa192/">联系我 <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="guiding-value">文明的持续存在，是我所持的最高价值。</p>
         </div>
-        <aside class="guiding-value" aria-labelledby="guiding-value-heading">
-          <h2 id="guiding-value-heading">我所秉持的价值</h2>
-          <p>文明的持续存在，是我所持的最高价值。</p>
-          <p class="value-context">我希望自己的研究与构建工作，能为文明的长期繁荣作出贡献。</p>
-        </aside>
+        <article class="project-entry project-entry-featured" aria-labelledby="featured-project-heading">
+          <div class="featured-project-heading">
+            <h2 id="featured-project-heading">Trace of Thought</h2>
+            <p class="project-category">独立项目 · 开发中</p>
+          </div>
+          <figure class="featured-project-visual">
+            <img src="../assets/trace-of-thought-concept-zh.svg" width="560" height="360" alt="将思维组织与数字活动连接到专注工作的项目概念图。">
+            <figcaption>项目概念图。</figcaption>
+          </figure>
+          <p class="project-description">用于组织思维、了解数字活动与支持专注工作的桌面软件。我正通过 WellModeledMan 开发这一项目。</p>
+          <a class="project-conversation-link" href="#connect">交流这个项目 <span aria-hidden="true">↗</span></a>
+        </article>
       </section>
 
       <section class="content-section" id="selected-work" aria-labelledby="selected-work-heading">
@@ -60,16 +74,6 @@
           <p>思考工具、Agent 工作流与人工智能应用。</p>
         </div>
         <ul class="project-list">
-          <li class="project-entry project-entry-featured">
-            <div>
-              <h3>Trace of Thought</h3>
-              <p class="project-category">独立项目 · 开发中</p>
-            </div>
-            <div>
-              <p class="project-description">用于组织思维、了解数字活动与支持专注工作的桌面软件。我正通过 WellModeledMan 开发这一项目。</p>
-              <a class="project-conversation-link" href="#connect">交流这个项目 <span aria-hidden="true">↗</span></a>
-            </div>
-          </li>
           <li class="project-entry">
             <div>
               <h3><a class="project-title-link" href="https://github.com/RealmX1/cline-kanban">Cline Kanban <span aria-hidden="true">↗</span></a></h3>
@@ -105,6 +109,14 @@
             <p class="project-description">从 LaTeX 与 PDF 教学材料中提取知识图谱，并提供 GraphRAG 对话界面。</p>
           </li>
         </ul>
+      </section>
+
+      <section class="blog-preview-section" aria-labelledby="blog-preview-heading">
+        <div>
+          <h2 id="blog-preview-heading">博客</h2>
+          <p>文章正在整理，之后会在这里更新。</p>
+        </div>
+        <a class="button-link" href="blog/">浏览博客 <span aria-hidden="true">→</span></a>
       </section>
 
       <section class="content-section" id="professional-background" aria-labelledby="professional-background-heading">
@@ -166,16 +178,23 @@
           <h2 class="contact-heading" id="contact-heading">保持联系。</h2>
           <p class="contact-description">欢迎交流研究、探讨合作，或聊聊值得一起构建的事物。</p>
         </div>
-        <div class="contact-links">
-          <a href="https://github.com/RealmX1">GitHub <span aria-hidden="true">↗</span></a>
-          <a href="https://www.linkedin.com/in/bomin-zhang-8318aa192/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <div class="contact-actions">
+          <div class="contact-links">
+            <a href="https://github.com/RealmX1">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/bomin-zhang-8318aa192/">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/RealmX1/realmx1.github.io/issues/new?title=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88&amp;body=Page%3A+https%3A%2F%2Frealmx1.github.io%2Fzh%2F%0ALanguage%3A+zh%0A%0A%E9%97%AE%E9%A2%98%E6%88%96%E5%BB%BA%E8%AE%AE%EF%BC%9A%0A" data-website-feedback>前往 GitHub 提交反馈 <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="feedback-disclosure">反馈公开提交，需 GitHub 账号登录。</p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <p>© 2026 Bomin Zhang</p>
-      <a href="https://github.com/RealmX1/realmx1.github.io">网站源码 <span aria-hidden="true">↗</span></a>
+      <div class="footer-links">
+        <a href="https://github.com/RealmX1/realmx1.github.io/issues/new?title=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88&amp;body=Page%3A+https%3A%2F%2Frealmx1.github.io%2Fzh%2F%0ALanguage%3A+zh%0A%0A%E9%97%AE%E9%A2%98%E6%88%96%E5%BB%BA%E8%AE%AE%EF%BC%9A%0A" data-website-feedback>网站反馈 <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/RealmX1/realmx1.github.io">网站源码 <span aria-hidden="true">↗</span></a>
+      </div>
     </footer>
   </div>
 </body>

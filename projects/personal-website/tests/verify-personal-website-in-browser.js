@@ -15,6 +15,29 @@ async (page) => {
       }
     });
   };
+  const verifyReadingAndTouchTargets = async (visitedPage) => {
+    const observations = await visitedPage.evaluate(() => {
+      const essentialText = [...document.querySelectorAll('.project-category, .project-provenance, .timeline-period, .current-affiliation, .feedback-disclosure, .site-footer')];
+      const readingText = [...document.querySelectorAll('.personal-description, .project-description, .contact-description, .blog-page-description, .blog-empty-state p, .blog-preview-section p')];
+      const bodyFontSize = parseFloat(getComputedStyle(document.body).fontSize);
+      const controls = [...document.querySelectorAll('.site-identity, .section-navigation a, .language-navigation a, .button-link, .contact-links a')];
+      return {
+        overflow: document.documentElement.scrollWidth > innerWidth,
+        bodyFontSize,
+        smallReadingText: readingText.filter(element => parseFloat(getComputedStyle(element).fontSize) < bodyFontSize).map(element => element.className),
+        smallText: essentialText.filter(element => parseFloat(getComputedStyle(element).fontSize) < 16).map(element => element.className),
+        smallControls: controls.filter(element => {
+          const box = element.getBoundingClientRect();
+          return box.width < 43.9 || box.height < 43.9;
+        }).map(element => ({text: element.textContent.trim(), width: element.getBoundingClientRect().width, height: element.getBoundingClientRect().height})),
+      };
+    });
+    verify(!observations.overflow, '页面不得横向溢出');
+    verify(observations.bodyFontSize >= 18, '正文不得小于 18px');
+    verify(observations.smallReadingText.length === 0, `实际正文应使用页面阅读字号：${observations.smallReadingText}`);
+    verify(observations.smallText.length === 0, `辅助信息不得小于 16px：${observations.smallText}`);
+    verify(observations.smallControls.length === 0, `主要点击区域不得小于 44px：${JSON.stringify(observations.smallControls)}`);
+  };
 
   for (const locale of ['en-US', 'zh-CN']) {
     const context = await browser.newContext({ locale, viewport: { width: 1280, height: 960 } });
@@ -24,6 +47,7 @@ async (page) => {
       const languagePath = locale === 'zh-CN' ? '/zh/' : '/en/';
       await visitorPage.goto(`${siteOrigin}/`);
       await visitorPage.waitForURL(url => url.pathname === languagePath);
+      await visitorPage.evaluate(() => document.fonts.ready);
       verify(await visitorPage.locator('h1').textContent() === 'Bomin Zhang', '首页必须显示姓名');
       verify(await visitorPage.locator('.project-entry').count() === 5, '必须展示五项作品');
       verify(await visitorPage.locator('[data-education-entry]').count() === 4, '必须展示四段学历');
@@ -33,11 +57,36 @@ async (page) => {
 
       for (const width of [320, 390, 768, 1280]) {
         await visitorPage.setViewportSize({ width, height: 960 });
-        const fitsViewport = await visitorPage.evaluate(() =>
-          document.documentElement.scrollWidth <= window.innerWidth);
-        verify(fitsViewport, `${locale} 在 ${width}px 宽度不得横向溢出`);
+        await verifyReadingAndTouchTargets(visitorPage);
       }
-      completedChecks.push(`${locale}：入口、正文、学历与四种屏幕宽度通过`);
+      await visitorPage.evaluate(() => { document.body.style.zoom = '2'; });
+      verify(await visitorPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+        '桌面 200% CSS 缩放模拟不得横向溢出');
+      await visitorPage.evaluate(() => { document.body.style.zoom = ''; });
+      completedChecks.push(`${locale}：入口、正文、学历、四种屏幕宽度、字号、点击区域与 200% CSS 缩放模拟通过`);
+
+      await visitorPage.locator('.section-navigation a[href="blog/"]').click();
+      await visitorPage.waitForURL(url => url.pathname === `${languagePath}blog/`);
+      verify(await visitorPage.locator('[data-blog-empty-state]').isVisible(), '博客必须显示真实空状态');
+      verify(await visitorPage.locator('time').count() === 0, '博客不得伪造已发表文章日期');
+      for (const width of [320, 390, 768, 1280]) {
+        await visitorPage.setViewportSize({ width, height: 960 });
+        await verifyReadingAndTouchTargets(visitorPage);
+      }
+      const feedbackDetails = await visitorPage.locator('[data-website-feedback]').first().evaluate(element => {
+        const destination = new URL(element.href);
+        return {origin: destination.origin, path: destination.pathname, body: destination.searchParams.get('body'), page: document.querySelector('link[rel="canonical"]').href};
+      });
+      verify(feedbackDetails.origin === 'https://github.com' && feedbackDetails.path === '/RealmX1/realmx1.github.io/issues/new', '反馈必须到达正确的站点仓库');
+      verify(feedbackDetails.body.includes(feedbackDetails.page), '反馈必须预填当前博客页面');
+      await visitorPage.locator('.language-navigation a:not([aria-current])').click();
+      const alternateBlogPath = locale === 'zh-CN' ? '/en/blog/' : '/zh/blog/';
+      await visitorPage.waitForURL(url => url.pathname === alternateBlogPath);
+      verify(await visitorPage.locator('[data-blog-empty-state]').isVisible(), '博客换语言后仍须停留在博客');
+      await visitorPage.locator('.back-to-home-link').click();
+      await visitorPage.waitForURL(url => url.pathname === (locale === 'zh-CN' ? '/en/' : '/zh/'));
+      completedChecks.push(`${locale}：博客导航、空状态、双语对应页、返回首页和反馈预填通过`);
+      await visitorPage.goto(`${siteOrigin}${languagePath}`);
 
       const alternateLanguageLink = visitorPage.locator('.language-navigation a:not([aria-current])');
       await alternateLanguageLink.click();
@@ -62,7 +111,10 @@ async (page) => {
     verify(await noScriptPage.locator('.project-entry').count() === 5, '无脚本时中文正文仍完整');
     await noScriptPage.getByRole('link', { name: 'Switch to English' }).click();
     verify(await noScriptPage.locator('.project-entry').count() === 5, '无脚本时仍可切换到英文正文');
-    completedChecks.push('禁用 JavaScript：入口、正文与语言切换通过');
+    await noScriptPage.locator('.section-navigation a[href="blog/"]').click();
+    verify(await noScriptPage.locator('[data-blog-empty-state]').isVisible(), '无脚本时博客仍可访问');
+    verify(await noScriptPage.locator('[data-website-feedback]').count() > 0, '无脚本时仍须保留反馈入口');
+    completedChecks.push('禁用 JavaScript：入口、正文、语言切换、博客与反馈入口通过');
   } finally {
     await noScriptContext.close();
   }

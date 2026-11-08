@@ -17,6 +17,7 @@
   <link rel="alternate" hreflang="zh-CN" href="https://realmx1.github.io/zh/">
   <link rel="alternate" hreflang="x-default" href="https://realmx1.github.io/">
   <link rel="icon" type="image/svg+xml" href="../assets/bomin-zhang-monogram.svg">
+  <link rel="preload" href="../assets/fonts/hanken-grotesk-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../assets/personal-website.css">
   <script src="../assets/language-preference-navigation.js" defer></script>
 </head>
@@ -25,11 +26,12 @@
   <div class="page-container">
     <header class="site-header">
       <a class="site-identity" href="./" aria-label="Bomin Zhang, home">
-        <span class="personal-monogram" aria-hidden="true">BZ</span>Bomin Zhang
+        <span class="personal-monogram" aria-hidden="true">BZ</span><span class="identity-name">Bomin Zhang</span>
       </a>
       <nav class="section-navigation" aria-label="Main navigation">
         <a href="#selected-work">Work</a>
-        <a href="#professional-background">Background</a>
+        <a href="blog/">Blog</a>
+        <a href="#professional-background">About</a>
         <a href="#connect">Connect</a>
       </nav>
       <nav class="language-navigation" aria-label="Language">
@@ -41,17 +43,29 @@
 
     <main id="main-content">
       <section class="personal-introduction" aria-labelledby="personal-name">
-        <div>
-          <p class="professional-positioning">Researcher &amp; builder</p>
+        <div class="personal-introduction-copy">
           <h1 class="personal-name" id="personal-name">Bomin Zhang</h1>
+          <p class="professional-positioning">Researcher &amp; builder</p>
           <p class="personal-description">I work across artificial intelligence, software, and philosophy. I build tools for thinking, learning, and working with intelligent systems.</p>
           <p class="current-affiliation">Doctoral studies in AI · Shanghai Innovation Institute</p>
+          <div class="intro-actions">
+            <a class="button-link button-link-primary" href="#selected-work">Explore my work <span aria-hidden="true">↘</span></a>
+            <a class="button-link" href="https://www.linkedin.com/in/bomin-zhang-8318aa192/">Get in touch <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="guiding-value">I hold the continued existence of civilization as my highest value.</p>
         </div>
-        <aside class="guiding-value" aria-labelledby="guiding-value-heading">
-          <h2 id="guiding-value-heading">A guiding value</h2>
-          <p>I hold the continued existence of civilization as my highest value.</p>
-          <p class="value-context">I hope my research and the things I build can contribute to its long-term flourishing.</p>
-        </aside>
+        <article class="project-entry project-entry-featured" aria-labelledby="featured-project-heading">
+          <div class="featured-project-heading">
+            <h2 id="featured-project-heading">Trace of Thought</h2>
+            <p class="project-category">Independent project · In development</p>
+          </div>
+          <figure class="featured-project-visual">
+            <img src="../assets/trace-of-thought-concept-en.svg" width="560" height="360" alt="Thoughts and digital activity connect to focused work, illustrated as a project concept.">
+            <figcaption>Project concept diagram.</figcaption>
+          </figure>
+          <p class="project-description">Desktop software for organizing thoughts, understanding digital activity, and supporting focused work. I am developing it through WellModeledMan.</p>
+          <a class="project-conversation-link" href="#connect">Talk about this project <span aria-hidden="true">↗</span></a>
+        </article>
       </section>
 
       <section class="content-section" id="selected-work" aria-labelledby="selected-work-heading">
@@ -60,16 +74,6 @@
           <p>Thinking tools, agent workflows, and applied AI.</p>
         </div>
         <ul class="project-list">
-          <li class="project-entry project-entry-featured">
-            <div>
-              <h3>Trace of Thought</h3>
-              <p class="project-category">Independent project · In development</p>
-            </div>
-            <div>
-              <p class="project-description">Desktop software for organizing thoughts, understanding digital activity, and supporting focused work. I am developing it through WellModeledMan.</p>
-              <a class="project-conversation-link" href="#connect">Talk about this project <span aria-hidden="true">↗</span></a>
-            </div>
-          </li>
           <li class="project-entry">
             <div>
               <h3><a class="project-title-link" href="https://github.com/RealmX1/cline-kanban">Cline Kanban <span aria-hidden="true">↗</span></a></h3>
@@ -105,6 +109,14 @@
             <p class="project-description">Extracts a knowledge graph from LaTeX and PDF course materials and provides a GraphRAG chat interface.</p>
           </li>
         </ul>
+      </section>
+
+      <section class="blog-preview-section" aria-labelledby="blog-preview-heading">
+        <div>
+          <h2 id="blog-preview-heading">Blog</h2>
+          <p>No posts yet. The first entries will appear here.</p>
+        </div>
+        <a class="button-link" href="blog/">Browse the blog <span aria-hidden="true">→</span></a>
       </section>
 
       <section class="content-section" id="professional-background" aria-labelledby="professional-background-heading">
@@ -166,16 +178,23 @@
           <h2 class="contact-heading" id="contact-heading">Let's connect.</h2>
           <p class="contact-description">For research, collaborations, or a conversation about something worth building.</p>
         </div>
-        <div class="contact-links">
-          <a href="https://github.com/RealmX1">GitHub <span aria-hidden="true">↗</span></a>
-          <a href="https://www.linkedin.com/in/bomin-zhang-8318aa192/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <div class="contact-actions">
+          <div class="contact-links">
+            <a href="https://github.com/RealmX1">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/bomin-zhang-8318aa192/">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/RealmX1/realmx1.github.io/issues/new?title=Website+feedback&amp;body=Page%3A+https%3A%2F%2Frealmx1.github.io%2Fen%2F%0ALanguage%3A+en%0A%0AProblem+or+suggestion%3A%0A" data-website-feedback>Feedback on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="feedback-disclosure">Feedback is public. GitHub sign-in is required.</p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <p>© 2026 Bomin Zhang</p>
-      <a href="https://github.com/RealmX1/realmx1.github.io">Website source <span aria-hidden="true">↗</span></a>
+      <div class="footer-links">
+        <a href="https://github.com/RealmX1/realmx1.github.io/issues/new?title=Website+feedback&amp;body=Page%3A+https%3A%2F%2Frealmx1.github.io%2Fen%2F%0ALanguage%3A+en%0A%0AProblem+or+suggestion%3A%0A" data-website-feedback>Website feedback <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/RealmX1/realmx1.github.io">Website source <span aria-hidden="true">↗</span></a>
+      </div>
     </footer>
   </div>
 </body>

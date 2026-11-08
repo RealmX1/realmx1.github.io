@@ -1,6 +1,6 @@
 # 个人主页改版提案
 
-更新日期：2026-11-08。状态：设计讨论中，未开始改版实施。
+更新日期：2026-11-08。状态：已获实施授权。用户以“sure proceed”批准承接推荐方案 D，反馈采用推荐的 GitHub Issues。
 
 ## 用户已确认的要求
 
@@ -9,7 +9,7 @@
 - 用户原话：“do not use purple. do not use blue. not as the main color.”
 - 用户原话：“also leave place for blogs. if it is possible, have an entry where feed back reagrding the website can be received.”
 
-这两条补充来自本任务当前对话，覆盖初版产品约定中的相应范围。以下颜色、编排及反馈渠道是 Agent 建议，尚未获得用户确认。
+这两条补充来自本任务当前对话，覆盖初版产品约定中的相应范围。以下方案已进入实施；C 与私密表单保留为讨论过的替代方向。
 
 ## 视觉与阅读建议
 
@@ -26,7 +26,7 @@
 - [方案 C：炭黑与朱红，桌面与手机](design-direction-studies/charcoal-vermilion-desktop-and-mobile.png)
 - [方案 D：中性白与朱红，桌面与手机](design-direction-studies/neutral-white-vermilion-desktop-and-mobile.png)
 
-当前建议以 D 继续细化，理由是浅色阅读区更适合后续博客与手机浏览。草图用于比较构图、主色和信息层级；生成文字、示意软件、颜色细节与实际像素尺寸均不能直接作为最终实现依据。生成提示要求不使用蓝紫色，保留大字号、可点击入口、无文章时的真实空状态和明确的“界面示意”标识。
+当前采用 D，理由是浅色阅读区更适合后续博客与手机浏览。草图用于比较构图、主色和信息层级；生成文字、示意软件、颜色细节与实际像素尺寸均不能直接作为最终实现依据。生成提示要求不使用蓝紫色，保留大字号、可点击入口、无文章时的真实空状态和明确的“界面示意”标识。
 
 ## 博客预留
 
